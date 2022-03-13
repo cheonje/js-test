@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <style>
+        .progress {
+            width: 300px;
+            background: #aaa;
+        }
+
+        .progressbar {
+            width: 0;
+            height: 30px;
+            background: green;
+            border-radius: 0;
+            color:#fff;
+            text-align: center;
+            line-height: 30px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: black;
+            color: #fff;
+            cursor: pointer;
+            border: 0;
+            border-radius: 0;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containter">
+        <div class="contents">
+            <h1>Progress</h1>
+            <div class="progress">
+                <div class="progressbar" id="progressbar">0%</div>
+            </div>
+            <button onclick="progress()" class="button">DOWNLOAD</button>
+        </div>
+    </div>
+
+    <script> 
+        function progress() {
+            
+            var progressbar = document.getElementById('progressbar');
+            var width = 0;
+            var id = setInterval(frame, 10);
+            function frame() {
+
+                if (width >= 100) {
+                    clearInterval(id);
+                    alert ('다운로드가 완료되었습니다.');  
+                } else {
+                    width ++;
+                    progressbar.style.width = width + "%";
+                    progressbar.innerHTML = width + "%";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

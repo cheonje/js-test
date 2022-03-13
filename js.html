@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-test</title>
+    <style>
+        .contents h2 {
+            font-size: 20px; 
+            padding-left: 10px;
+            margin-top: 20px;   
+        }
+
+        .contents h2:first-child {
+            margin-top: 0;   
+        }
+
+        .contents p {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="contents">
+            <h1>Random Number</h1>
+            <div>
+                <h2>번호 shuffle 추첨하기</h2>
+                <p>1,2,3,4,5,6 → <span class="shuffle-num"></span></p>
+                <p class="random-num3"></p>
+            </div>
+
+            <div>
+                <h2>로또 번호 생성하기</h2>
+                <p class="lotto"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 셔플 후 추첨
+        var num = [1,2,3,4,5,6];
+        var shuffleNum = document.querySelector('.shuffle-num');
+        var randomNum3 = document.querySelector('.random-num3');
+        
+        function shuffle(a) {
+            var j, x, i;
+            for (i = a.length; i; i -= 1) {
+                j = Math.floor(Math.random() * i);
+                x = a[i - 1];
+                a[i - 1] = a[j];
+                a[j] = x;
+            }
+        }
+
+        shuffle(num);
+
+        console.log(num);
+        console.log(num[2]);
+
+        shuffleNum.innerHTML = num;
+        randomNum3.innerHTML = '랜덤 번호의 3번째 번호 추첨 : ' + num[2];
+
+
+        //로또 번호 생성
+        var lotto = [];
+        var ball = document.querySelector('.lotto');
+
+        while (lotto.length < 6) {
+
+            var lottoNum = Math.floor(Math.random() * 45 + 1);
+           
+            if (lotto.indexOf(lottoNum) == -1) {
+                lotto.push(lottoNum);
+            }
+        };
+
+        lotto.sort((a,b)=>a-b);
+
+        console.log(lotto);
+
+        ball.innerHTML = lotto;
+    </script>
+
+</body>
+
+</html>
